@@ -10,7 +10,10 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="center" hgap="10" prefHeight="303.0" prefWidth="471.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane alignment="center" hgap="10" prefHeight="303.0" prefWidth="471.0" vgap="10"
+          xmlns="http://javafx.com/javafx/8.0.72"
+          xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="pdf.extractor.controller.Controller">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -31,28 +34,28 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField maxHeight="-Infinity" maxWidth="-Infinity"
-                       minHeight="-Infinity" minWidth="-Infinity"
-                       prefHeight="26.0" prefWidth="226.0"
-                       GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="90.0" />
-               </GridPane.margin>
-            </TextField>
-            <Button mnemonicParsing="false" text="Submit" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" text="Open File" />
-            <TextField GridPane.columnIndex="1" />
+            <Button mnemonicParsing="false" text="Open File" fx:id = "openFileButton"/>
+            <TextField GridPane.columnIndex="1" fx:id = "fileLocationTextField"/>
             <RadioButton mnemonicParsing="false" text="Suffix" GridPane.rowIndex="1">
                <toggleGroup>
-                  <ToggleGroup fx:id="FileName" />
+                  <ToggleGroup fx:id="fileNameRadioGroup" />
                </toggleGroup>
             </RadioButton>
             <RadioButton mnemonicParsing="false" selected="true"
                          text="New File" textAlignment="CENTER"
-                         toggleGroup="$FileName"
+                         toggleGroup="$fileNameRadioGroup"
                          GridPane.columnIndex="1" GridPane.rowIndex="1" />
+             <TextField maxHeight="-Infinity" maxWidth="-Infinity"
+                        minHeight="-Infinity" minWidth="-Infinity"
+                        prefHeight="26.0" prefWidth="226.0"
+                        GridPane.columnIndex="1" GridPane.rowIndex="1">
+                 <GridPane.margin>
+                     <Insets left="90.0" />
+                 </GridPane.margin>
+             </TextField>
             <Label text="List Of Pages" GridPane.rowIndex="2" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" text="Submit" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </children>
