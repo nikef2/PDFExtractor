@@ -38,15 +38,8 @@
         <!-- Start controls listing -->
         <children>
            <Button mnemonicParsing="false" text="Open File" fx:id = "openFileButton"/>
-           <TextField GridPane.columnIndex="1" fx:id = "fileLocationTextField"/>
-           <RadioButton mnemonicParsing="false" text="Suffix" GridPane.rowIndex="1">
-              <toggleGroup>
-                 <ToggleGroup fx:id="fileNameRadioGroup" />
-              </toggleGroup>
-           </RadioButton>
-           <RadioButton mnemonicParsing="false" selected="true"
-                        text="New File" textAlignment="CENTER"
-                        toggleGroup="$fileNameRadioGroup"
+           <TextField GridPane.columnIndex="1" fx:id = "inputFileNameTextField"/>
+           <Label text="New File Name" textAlignment="CENTER"
                         GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField maxHeight="-Infinity" maxWidth="-Infinity"
                        minHeight="-Infinity" minWidth="-Infinity"
