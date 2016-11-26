@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 /**
  * Main class which is the entry point to the application. It creates a stage
  * and scene and uses the fxml file for creating the UI.
+ * 
+ * @author Nikhilesh
  */
 public class Main extends Application {
 

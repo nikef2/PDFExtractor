@@ -13,12 +13,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Region;
 import javafx.stage.FileChooser;
 import org.apache.commons.lang3.StringUtils;
 import pdf.extractor.lib.PDFExtractor;
 
 /**
  * Controller class for this application that defines the behaviour of each button in the UI.
+ *
+ * @author Nikhilesh
  */
 public class Controller implements Initializable {
 
@@ -82,12 +85,19 @@ public class Controller implements Initializable {
      */
     private void performSubmitAction(){
         if(isValidInputs()) {
-            List<Integer> pagesList = getListOfPages();
-            Path outputPath = getOutputPath();
-            inputFileNameTextField.setText(outputPath.toString());
-            outputFileNameTextField.setText(Integer.toString(pagesList.size()));
-            //Do the actual PDF Extraction/Creation.
-            extractor.createNewPDF(inputFile.toPath(), pagesList, outputPath);
+            try {
+                List<Integer> pagesList = getListOfPages();
+                Path outputPath = getOutputPath();
+                //Do the actual PDF Extraction/Creation.
+                if(extractor.createNewPDF(inputFile.toPath(), pagesList, outputPath)){
+                    displayAlert(Alert.AlertType.INFORMATION, "Successfully created PDF in " + outputPath.toString());
+                }
+                else{
+                    displayAlert(Alert.AlertType.ERROR, "Error when trying to create PDF. Please check inputs.");
+                }
+            }catch (Exception e){
+                displayAlert(Alert.AlertType.ERROR, "Error when trying to create PDF. Please check inputs.");
+            }
         }
     }
 
@@ -126,6 +136,7 @@ public class Controller implements Initializable {
     private void displayAlert(final Alert.AlertType alertType, final String alertText){
         Alert alert = new Alert(alertType);
         alert.setContentText(alertText);
+        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         alert.showAndWait();
     }
 
