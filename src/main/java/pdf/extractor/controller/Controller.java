@@ -5,9 +5,9 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.stream.IntStream;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -50,12 +50,22 @@ public class Controller implements Initializable {
         /*
          * On click of open File button, open the file chooser and update the text field with the file location.
          */
-        openFileButton.setOnAction((ActionEvent event) -> openFileAction());
+        openFileButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                openFileAction();
+            }
+        });
 
         /*
          * On click handler for the submit button.
          */
-        submitButton.setOnAction((ActionEvent event) -> performSubmitAction());
+        submitButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                performSubmitAction();
+            }
+        });
 
     }
 
@@ -158,7 +168,9 @@ public class Controller implements Initializable {
                 // Add each page between starting and end to the pageList
                 Integer startingPage = Integer.valueOf(StringUtils.substringBefore(pageNumber, HYPHEN));
                 Integer endingPage = Integer.valueOf(StringUtils.substringAfter(pageNumber, HYPHEN));
-                IntStream.rangeClosed(startingPage, endingPage).forEach(pageList::add);
+                for(int i=startingPage; i<=endingPage; i++){
+                    pageList.add(i);
+                }
             }else{
                 pageList.add(Integer.valueOf(pageNumber));
             }

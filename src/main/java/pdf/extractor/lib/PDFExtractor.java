@@ -35,7 +35,9 @@ public class PDFExtractor {
             PDDocument inputPDF = PDDocument.load(inputFile.toFile());
             PDDocument outputPDF = new PDDocument();
             //Input page number will be 1-based, whereas code works on 0-based
-            listOfPages.forEach(pageNumber -> outputPDF.addPage(inputPDF.getPage(--pageNumber)));
+            for(Integer pageNumber: listOfPages){
+                outputPDF.addPage(inputPDF.getPage(--pageNumber));
+            }
 
             outputPDF.save(outputFileName.toFile());
             outputPDF.close();
